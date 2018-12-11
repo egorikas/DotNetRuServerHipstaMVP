@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 
-namespace DotNetRuServerHipstaMVP.Domain
+namespace DotNetRuServerHipstaMVP.Domain.Entities
 {
-    public class Speaker
+    public class Speaker : IEntity
     {
         public string Id { get; set; }
         public string Name { get; set; }

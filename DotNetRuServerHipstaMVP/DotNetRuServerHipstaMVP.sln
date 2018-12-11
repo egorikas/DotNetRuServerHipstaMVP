@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetRuServerHipstaMVP.Api
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetRuServerHipstaMVP.Domain", "DotNetRuServerHipstaMVP.Domain\DotNetRuServerHipstaMVP.Domain.csproj", "{F7F61475-18EA-4977-B197-284397745211}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetRuServerHipstaMVP.Infrastructure", "DotNetRuServerHipstaMVP.Infrastructure\DotNetRuServerHipstaMVP.Infrastructure.csproj", "{3C58E817-8A4C-44D6-A4D9-6BDFDF9F9415}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{F7F61475-18EA-4977-B197-284397745211}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7F61475-18EA-4977-B197-284397745211}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7F61475-18EA-4977-B197-284397745211}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C58E817-8A4C-44D6-A4D9-6BDFDF9F9415}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C58E817-8A4C-44D6-A4D9-6BDFDF9F9415}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C58E817-8A4C-44D6-A4D9-6BDFDF9F9415}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C58E817-8A4C-44D6-A4D9-6BDFDF9F9415}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace DotNetRuServerHipstaMVP.Domain
+namespace DotNetRuServerHipstaMVP.Domain.Entities
 {
-    public class Talk : Draftable
+    public class Talk : IDraftable, IEntity
     {
         public string Id { get; set; }
         
@@ -16,5 +15,7 @@ namespace DotNetRuServerHipstaMVP.Domain
         
         public ICollection<Speaker> Speakers { get; set; }
         public ICollection<Talk> SeeAlsoTalks { get; set; }
+        
+        public bool IsDraft { get; set; }
     }
 }
