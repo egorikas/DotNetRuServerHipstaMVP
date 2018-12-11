@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetRuServerHipstaMVP.Dom
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetRuServerHipstaMVP.Infrastructure", "DotNetRuServerHipstaMVP.Infrastructure\DotNetRuServerHipstaMVP.Infrastructure.csproj", "{3C58E817-8A4C-44D6-A4D9-6BDFDF9F9415}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetRuServerHipstaMVP.DatabaseScheme", "DotNetRuServerHipstaMVP.DatabaseScheme\DotNetRuServerHipstaMVP.DatabaseScheme.csproj", "{72BF8045-1B7A-464A-8CFE-11D8964BFB71}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{3C58E817-8A4C-44D6-A4D9-6BDFDF9F9415}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C58E817-8A4C-44D6-A4D9-6BDFDF9F9415}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C58E817-8A4C-44D6-A4D9-6BDFDF9F9415}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72BF8045-1B7A-464A-8CFE-11D8964BFB71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72BF8045-1B7A-464A-8CFE-11D8964BFB71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72BF8045-1B7A-464A-8CFE-11D8964BFB71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72BF8045-1B7A-464A-8CFE-11D8964BFB71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
