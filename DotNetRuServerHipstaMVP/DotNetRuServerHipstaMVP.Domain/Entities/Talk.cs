@@ -13,8 +13,8 @@ namespace DotNetRuServerHipstaMVP.Domain.Entities
         public string SlidesUrl { get; set; }
         public string VideoUrl { get; set; } 
         
-        public ICollection<Speaker> Speakers { get; set; }
-        public ICollection<Talk> SeeAlsoTalks { get; set; }
+        public ICollection<SpeakerTalk> Speakers { get; set; }
+        public ICollection<SeeAlsoTalk> SeeAlsoTalks { get; set; }
         
         public bool IsDraft { get; set; }
     }

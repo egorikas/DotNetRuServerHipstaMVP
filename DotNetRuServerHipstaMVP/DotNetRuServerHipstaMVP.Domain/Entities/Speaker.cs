@@ -16,6 +16,6 @@ namespace DotNetRuServerHipstaMVP.Domain.Entities
         public string HabrUrl { get; set; }
         public string GitHubUrl { get; set; }
         
-        public ICollection<Talk> Talks { get; set; }
+        public ICollection<SpeakerTalk> Talks { get; set; }
     }
 }
