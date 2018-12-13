@@ -4,9 +4,10 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using DotNetRuServerHipstaMVP.Domain.Entities;
 using DotNetRuServerHipstaMVP.Domain.Interfaces;
+using DotNetRuServerHipstaMVP.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 
-namespace DotNetRuServerHipstaMVP.Infrastructure.Database
+namespace DotNetRuServerHipstaMVP.Infrastructure
 {
     public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class, IEntity
     {

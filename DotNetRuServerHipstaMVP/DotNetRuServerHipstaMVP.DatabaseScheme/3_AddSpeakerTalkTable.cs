@@ -7,26 +7,26 @@ namespace DotNetRuServerHipstaMVP.DatabaseScheme
     {
         public override void Up()
         {
-            var table = Create.Table("speaker_talks");
+            var table = Create.Table("SpeakerTalks");
             
             table
-                .WithColumn("speaker_id")
+                .WithColumn("SpeakerId")
                 .AsString(100)
                 .NotNullable();            
             table
-                .WithColumn("talk_id")
+                .WithColumn("TalkId")
                 .AsString(100)
                 .NotNullable();
 
-            Create.PrimaryKey("id")
-                .OnTable("speaker_talks")
-                .Columns("speaker_id", "talk_id");
+            Create.PrimaryKey("SpeakerTalksId")
+                .OnTable("SpeakerTalks")
+                .Columns("SpeakerId", "TalkId");
 
         }
 
         public override void Down()
         {
-            Delete.Table("speaker_talks");
+            Delete.Table("SpeakerTalks");
         }
     }
 }

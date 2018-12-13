@@ -7,45 +7,45 @@ namespace DotNetRuServerHipstaMVP.DatabaseScheme
     {
         public override void Up()
         {
-            var table = Create.Table("speakers");
+            var table = Create.Table("Speakers");
             table
-                .WithColumn("id")
+                .WithColumn("Id")
                 .AsString(100)
                 .NotNullable()
                 .PrimaryKey();         
             table
-                .WithColumn("name")
+                .WithColumn("Name")
                 .AsString(100)
                 .NotNullable();           
             table
-                .WithColumn("company_name")
+                .WithColumn("CompanyName")
                 .AsString(100);            
             table
-                .WithColumn("company_url")
+                .WithColumn("CompanyUrl")
                 .AsString(100);            
             table
-                .WithColumn("description")
+                .WithColumn("Description")
                 .AsString(100);
             table
-                .WithColumn("blog_url")
+                .WithColumn("BlogUrl")
                 .AsString(100);
             table
-                .WithColumn("contacts_url")
+                .WithColumn("ContactsUrl")
                 .AsString(100);
             table
-                .WithColumn("twitter_url")
+                .WithColumn("TwitterUrl")
                 .AsString(50);
             table
-                .WithColumn("habr_url")
+                .WithColumn("HabrUrl")
                 .AsString(50);
             table
-                .WithColumn("github_url")
+                .WithColumn("GithubUrl")
                 .AsString(50);
         }
 
         public override void Down()
         {
-            Delete.Table("speakers");
+            Delete.Table("Speakers");
         }
     }
 }
