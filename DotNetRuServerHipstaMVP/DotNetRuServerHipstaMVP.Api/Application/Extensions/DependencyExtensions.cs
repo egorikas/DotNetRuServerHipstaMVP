@@ -1,3 +1,4 @@
+using DotNetRuServerHipstaMVP.Api.Application.Auth;
 using DotNetRuServerHipstaMVP.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -11,6 +12,8 @@ namespace DotNetRuServerHipstaMVP.Api.Application.Extensions
         {
             services.AddDbContext<DotNetRuServerContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("Database")));
+
+            services.AddTransient<IAuthService, AuthService>();
 
         }
     }

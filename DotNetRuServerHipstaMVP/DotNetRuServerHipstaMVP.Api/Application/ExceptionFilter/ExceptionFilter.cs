@@ -24,6 +24,10 @@ namespace DotNetRuServerHipstaMVP.Api.Application.ExceptionFilter
                     context.Result =
                         new NotAcceptableObjectResult(new ErrorResponse {Errors = ex.Exceptions});
                     return;
+                case NotFoundException ex:
+                    context.Result =
+                        new NotFoundObjectResult(new ErrorResponse {Errors = new[] { ex.Message }});
+                    return;
 
             }
 
@@ -62,6 +66,13 @@ namespace DotNetRuServerHipstaMVP.Api.Application.ExceptionFilter
         }
     }
 
-
+    public class NotFoundObjectResult : ObjectResult
+    {
+        public NotFoundObjectResult(object value)
+            : base(value)
+        {
+            StatusCode = (int) HttpStatusCode.NotFound;
+        }
+    }
 
 }
