@@ -44,7 +44,7 @@ namespace DotNetRuServerHipstaMVP.Api.Controllers.Speakers
                 throw new ValidationException("speakerId должно быть задано");
 
             var speaker = await _speakerRepository.GetByIdWithRelationsAsync(speakerId.Trim());
-            return speakers.CreateSpeakerListResponse(count);
+            return speaker.CreateSpeakerResponse();
         }
 
         [Authorize]
