@@ -39,7 +39,6 @@ namespace DotNetRuServerHipstaMVP.Api.Controllers.Speakers
         [ProducesResponseType(typeof(SpeakerResponse), (int) HttpStatusCode.OK)]
         public async Task<SpeakerResponse> GetSpeakerAsync(string speakerId)
         {
-            var count =  await _speakerRepository.CountAsync();
             if(string.IsNullOrEmpty(speakerId))
                 throw new ValidationException("speakerId должно быть задано");
 

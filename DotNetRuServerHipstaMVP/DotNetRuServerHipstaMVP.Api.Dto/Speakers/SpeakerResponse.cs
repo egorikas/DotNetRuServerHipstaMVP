@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using DotNetRuServerHipstaMVP.Api.Dto.Talks;
+
 namespace DotNetRuServerHipstaMVP.Api.Dto.Speakers
 {
     public class SpeakerResponse
@@ -13,5 +16,7 @@ namespace DotNetRuServerHipstaMVP.Api.Dto.Speakers
         public string TwitterUrl { get; set; }
         public string HabrUrl { get; set; }
         public string GitHubUrl { get; set; }
+
+        public List<TalkResponse> Talks { get; set; }
     }
 }
