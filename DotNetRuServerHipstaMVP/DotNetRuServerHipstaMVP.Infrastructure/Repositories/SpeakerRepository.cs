@@ -8,7 +8,7 @@ using DotNetRuServerHipstaMVP.Domain.Interfaces;
 using DotNetRuServerHipstaMVP.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 
-namespace DotNetRuServerHipstaMVP.Infrastructure
+namespace DotNetRuServerHipstaMVP.Infrastructure.Repositories
 {
     public class SpeakerRepository : ISpeakerRepository
     {
@@ -19,11 +19,16 @@ namespace DotNetRuServerHipstaMVP.Infrastructure
             _context = context;
         }
 
-        public Task<int> CountAsync() => _context.Speakers.CountAsync();
-
-        public Task<List<Speaker>> GetListAsync(int skip, int take, params Expression<Func<Speaker, object>>[] includes)
+        public Task<int> CountAsync()
         {
-            return _context.Speakers.Includes(includes).Skip(skip).Take(take).ToListAsync();
+            return _context.Speakers.CountAsync();
+        }
+
+        public Task<List<Speaker>> GetListAsync(bool takeForMobile, int skip, int take,
+            params Expression<Func<Speaker, object>>[] includes)
+        {
+            return _context.Speakers.Includes(includes).Where(x => x.IsUserVisible == takeForMobile).Skip(skip)
+                .Take(take).ToListAsync();
         }
 
         public Task<Speaker> GetByIdAsync(string id)

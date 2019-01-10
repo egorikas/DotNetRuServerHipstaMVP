@@ -20,13 +20,14 @@ namespace DotNetRuServerHipstaMVP.Infrastructure.Database
             speaker.Property(x => x.TwitterUrl).HasColumnName("TwitterUrl");
             speaker.Property(x => x.HabrUrl).HasColumnName("HabrUrl");
             speaker.Property(x => x.GitHubUrl).HasColumnName("GitHubUrl");
+            speaker.Property(x => x.IsUserVisible).HasColumnName("IsUserVisible");
         }
-        
+
         public static void BindTalk(this EntityTypeBuilder<Talk> talk)
         {
             talk.ToTable("Talks");
 
-            talk.Property(x => x.Id).HasColumnName("Id");          
+            talk.Property(x => x.Id).HasColumnName("Id");
             talk.Property(x => x.Title).HasColumnName("Title");
             talk.Property(x => x.Description).HasColumnName("Description");
             talk.Property(x => x.CodeUrl).HasColumnName("CodeUrl");
@@ -50,7 +51,7 @@ namespace DotNetRuServerHipstaMVP.Infrastructure.Database
         public static void BindSeeAlsoTalk(this EntityTypeBuilder<SeeAlsoTalk> seeAlsoTalk)
         {
             seeAlsoTalk.ToTable("SeeAlsoTalks");
-            
+
             seeAlsoTalk.HasKey(t => new {t.ParentTalkId, t.ChildTalkId});
 
             seeAlsoTalk.Property(x => x.ParentTalkId).HasColumnName("ParentTalkId");

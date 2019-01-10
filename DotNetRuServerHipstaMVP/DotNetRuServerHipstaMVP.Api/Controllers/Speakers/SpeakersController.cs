@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using DotNetRuServerHipstaMVP.Api.Application.ExceptionFilter;
 using DotNetRuServerHipstaMVP.Api.Application.Extensions;
 using DotNetRuServerHipstaMVP.Api.Dto.Speakers;
-using DotNetRuServerHipstaMVP.Domain.Entities;
 using DotNetRuServerHipstaMVP.Domain.Exceptions;
 using DotNetRuServerHipstaMVP.Domain.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -27,19 +26,30 @@ namespace DotNetRuServerHipstaMVP.Api.Controllers.Speakers
         [HttpGet]
         [Route("/speakers")]
         [ProducesResponseType(typeof(SpeakerListResponse), (int) HttpStatusCode.OK)]
-        public async Task<SpeakerListResponse> GetListAsync([FromQuery]int? skip, [FromQuery]int? take)
+        public async Task<SpeakerListResponse> GetListAsync([FromQuery] int? skip, [FromQuery] int? take)
         {
-            var count =  await _speakerRepository.CountAsync();
-            var speakers = await _speakerRepository.GetListAsync(skip ?? 0, take ?? count);
+            var count = await _speakerRepository.CountAsync();
+            var speakers = await _speakerRepository.GetListAsync(true, skip ?? 0, take ?? count);
             return speakers.CreateSpeakerListResponse(count);
         }
-        
+
+        [Authorize]
+        [HttpGet]
+        [Route("/speakers/draft")]
+        [ProducesResponseType(typeof(SpeakerListResponse), (int) HttpStatusCode.OK)]
+        public async Task<SpeakerListResponse> GetListForNonAppAsync([FromQuery] int? skip, [FromQuery] int? take)
+        {
+            var count = await _speakerRepository.CountAsync();
+            var speakers = await _speakerRepository.GetListAsync(false, skip ?? 0, take ?? count);
+            return speakers.CreateSpeakerListResponse(count);
+        }
+
         [HttpGet]
         [Route("/speakers/{speakerId}")]
         [ProducesResponseType(typeof(SpeakerResponse), (int) HttpStatusCode.OK)]
         public async Task<SpeakerResponse> GetSpeakerAsync(string speakerId)
         {
-            if(string.IsNullOrEmpty(speakerId))
+            if (string.IsNullOrEmpty(speakerId))
                 throw new ValidationException("speakerId должно быть задано");
 
             var speaker = await _speakerRepository.GetByIdWithRelationsAsync(speakerId.Trim());
@@ -51,23 +61,24 @@ namespace DotNetRuServerHipstaMVP.Api.Controllers.Speakers
         [Route("/speakers")]
         [ProducesResponseType(typeof(string), (int) HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ErrorResponse), (int) HttpStatusCode.NotAcceptable)]
-        public Task<string> AddSpeakerAsync([FromBody]UpsertSpeakerRequest request)
+        public Task<string> AddSpeakerAsync([FromBody] UpsertSpeakerRequest request)
         {
             this.ValidateRequest(request);
 
             var newSpeaker = request.CreateSpeaker();
-            return _speakerRepository.AddAsync(newSpeaker);         
+            return _speakerRepository.AddAsync(newSpeaker);
         }
-        
+
         [Authorize]
         [HttpPut]
         [Route("/speakers/{speakerId}")]
         [ProducesResponseType(typeof(OkResult), (int) HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ErrorResponse), (int) HttpStatusCode.NotAcceptable)]
-        public async Task<StatusCodeResult> UpdateSpeakerAsync(string speakerId, [FromBody]UpsertSpeakerRequest request)
+        public async Task<StatusCodeResult> UpdateSpeakerAsync(string speakerId,
+            [FromBody] UpsertSpeakerRequest request)
         {
             this.ValidateRequest(request);
-            if(string.IsNullOrEmpty(speakerId))
+            if (string.IsNullOrEmpty(speakerId))
                 throw new ValidationException("speakerId должно быть задано");
 
             var savedSpeaker = await _speakerRepository.GetByIdAsync(speakerId);

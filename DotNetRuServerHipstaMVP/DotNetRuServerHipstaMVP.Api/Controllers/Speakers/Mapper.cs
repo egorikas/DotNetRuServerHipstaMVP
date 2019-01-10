@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using DotNetRuServerHipstaMVP.Api.Dto.Speakers;
 using DotNetRuServerHipstaMVP.Api.Dto.Talks;
 using DotNetRuServerHipstaMVP.Domain.Entities;
@@ -23,8 +22,7 @@ namespace DotNetRuServerHipstaMVP.Api.Controllers.Speakers
         {
             var talks = new List<TalkResponse>();
             foreach (var result in speaker.Talks)
-            {
-                talks.Add(new TalkResponse()
+                talks.Add(new TalkResponse
                 {
                     Id = result.Talk.Id,
                     Description = result.Talk.Description,
@@ -34,7 +32,7 @@ namespace DotNetRuServerHipstaMVP.Api.Controllers.Speakers
                     VideoUrl = result.Talk.VideoUrl,
                     SlidesUrl = result.Talk.SlidesUrl
                 });
-            }
+
             return new SpeakerResponse
             {
                 Id = speaker.Id,
@@ -62,8 +60,9 @@ namespace DotNetRuServerHipstaMVP.Api.Controllers.Speakers
                 TwitterUrl = request.TwitterUrl,
                 CompanyName = request.CompanyName,
                 ContactsUrl = request.ContactsUrl,
-                GitHubUrl = request.GitHubUrl
+                GitHubUrl = request.GitHubUrl,
+                IsUserVisible = request.IsUserVisible
             };
-        } 
+        }
     }
 }
