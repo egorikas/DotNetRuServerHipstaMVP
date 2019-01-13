@@ -40,6 +40,12 @@ namespace DotNetRuServerHipstaMVP.Infrastructure.Repositories
             return _context.Talks.FirstOrDefaultAsync(x => x.Id == id);
         }
 
+        public Task<Talk> GetByIdWithSpeakersAsync(string id)
+        {
+            return _context.Talks.Include(x => x.Speakers).ThenInclude(x => x.Speaker)
+                .FirstOrDefaultAsync(x => x.Id == id);
+        }
+
         public async Task<string> AddAsync(Talk talk)
         {
             talk.Id = "temp";

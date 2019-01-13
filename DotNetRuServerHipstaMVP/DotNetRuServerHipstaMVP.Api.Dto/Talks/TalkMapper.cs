@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
+using DotNetRuServerHipstaMVP.Api.Dto.Speakers;
 using DotNetRuServerHipstaMVP.Domain.Entities;
 
 namespace DotNetRuServerHipstaMVP.Api.Dto.Talks
@@ -7,7 +9,7 @@ namespace DotNetRuServerHipstaMVP.Api.Dto.Talks
     {
         public static TalkResponse ToTalkResponse(this Talk talk)
         {
-            return new TalkResponse
+            var response = new TalkResponse
             {
                 Id = talk.Id,
                 Description = talk.Description,
@@ -17,12 +19,20 @@ namespace DotNetRuServerHipstaMVP.Api.Dto.Talks
                 VideoUrl = talk.VideoUrl,
                 SlidesUrl = talk.SlidesUrl
             };
+
+            if (talk.Speakers == null) return response;
+
+
+            response.Speakers = new List<SpeakerResponse>();
+            foreach (var talkSpeaker in talk.Speakers)
+                response.Speakers.Add(talkSpeaker.Speaker.CreateSpeakerResponse());
+
+            return response;
         }
 
         public static TalkListResponse ToTalkListResponse(this ICollection<Talk> talks, int count)
         {
-            var resultList = new List<TalkResponse>();
-            foreach (var talk in talks) resultList.Add(talk.ToTalkResponse());
+            var resultList = talks.Select(talk => talk.ToTalkResponse()).ToList();
 
             return new TalkListResponse
             {

@@ -57,7 +57,7 @@ namespace DotNetRuServerHipstaMVP.Api.Controllers.Talks
             if (string.IsNullOrEmpty(talkId))
                 throw new ValidationException("talkId должно быть задано");
 
-            var talk = await _talkRepository.GetByIdAsync(talkId);
+            var talk = await _talkRepository.GetByIdWithSpeakersAsync(talkId);
             return talk.ToTalkResponse();
         }
 
@@ -118,7 +118,7 @@ namespace DotNetRuServerHipstaMVP.Api.Controllers.Talks
             if (savedTalk == null)
                 throw new NotFoundException("Доклада не существует");
 
-            var savedSpeaker = await _speakerRepository.GetByIdWithRelationsAsync(request.SpeakerId);
+            var savedSpeaker = await _speakerRepository.GetByIdWithTalksAsync(request.SpeakerId);
             if (savedSpeaker == null)
                 throw new NotFoundException("Спикера не существует");
 

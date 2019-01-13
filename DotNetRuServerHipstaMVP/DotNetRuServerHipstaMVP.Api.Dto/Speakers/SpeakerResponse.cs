@@ -10,7 +10,7 @@ namespace DotNetRuServerHipstaMVP.Api.Dto.Speakers
         public string CompanyName { get; set; }
         public string CompanyUrl { get; set; }
         public string Description { get; set; }
-        
+
         public string BlogUrl { get; set; }
         public string ContactsUrl { get; set; }
         public string TwitterUrl { get; set; }

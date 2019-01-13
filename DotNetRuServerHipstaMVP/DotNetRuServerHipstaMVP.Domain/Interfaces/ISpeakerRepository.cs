@@ -14,7 +14,7 @@ namespace DotNetRuServerHipstaMVP.Domain.Interfaces
             params Expression<Func<Speaker, object>>[] includes);
 
         Task<Speaker> GetByIdAsync(string id);
-        Task<Speaker> GetByIdWithRelationsAsync(string id);
+        Task<Speaker> GetByIdWithTalksAsync(string id);
 
         Task<string> AddAsync(Speaker speaker);
     }

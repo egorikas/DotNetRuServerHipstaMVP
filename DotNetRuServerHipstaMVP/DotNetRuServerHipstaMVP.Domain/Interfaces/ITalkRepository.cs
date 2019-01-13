@@ -19,6 +19,7 @@ namespace DotNetRuServerHipstaMVP.Domain.Interfaces
         );
 
         Task<Talk> GetByIdAsync(string id);
+        Task<Talk> GetByIdWithSpeakersAsync(string id);
 
         Task<string> AddAsync(Talk talk);
     }
