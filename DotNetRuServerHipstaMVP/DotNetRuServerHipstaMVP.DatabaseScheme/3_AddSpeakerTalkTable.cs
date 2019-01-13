@@ -8,11 +8,11 @@ namespace DotNetRuServerHipstaMVP.DatabaseScheme
         public override void Up()
         {
             var table = Create.Table("SpeakerTalks");
-            
+
             table
                 .WithColumn("SpeakerId")
                 .AsString(100)
-                .NotNullable();            
+                .NotNullable();
             table
                 .WithColumn("TalkId")
                 .AsString(100)
@@ -21,7 +21,6 @@ namespace DotNetRuServerHipstaMVP.DatabaseScheme
             Create.PrimaryKey("SpeakerTalksId")
                 .OnTable("SpeakerTalks")
                 .Columns("SpeakerId", "TalkId");
-
         }
 
         public override void Down()

@@ -1,11 +1,10 @@
 using System.Collections.Generic;
-using DotNetRuServerHipstaMVP.Api.Dto.Speakers;
 using DotNetRuServerHipstaMVP.Api.Dto.Talks;
 using DotNetRuServerHipstaMVP.Domain.Entities;
 
-namespace DotNetRuServerHipstaMVP.Api.Controllers.Speakers
+namespace DotNetRuServerHipstaMVP.Api.Dto.Speakers
 {
-    public static class Mapper
+    public static class SpeakerMapper
     {
         public static SpeakerListResponse CreateSpeakerListResponse(this List<Speaker> speakers, int allSpeakersCount)
         {
@@ -22,16 +21,9 @@ namespace DotNetRuServerHipstaMVP.Api.Controllers.Speakers
         {
             var talks = new List<TalkResponse>();
             foreach (var result in speaker.Talks)
-                talks.Add(new TalkResponse
-                {
-                    Id = result.Talk.Id,
-                    Description = result.Talk.Description,
-                    Title = result.Talk.Title,
-                    CodeUrl = result.Talk.CodeUrl,
-                    IsDraft = result.Talk.IsDraft,
-                    VideoUrl = result.Talk.VideoUrl,
-                    SlidesUrl = result.Talk.SlidesUrl
-                });
+                if (result.Talk != null)
+                    talks.Add(result.Talk.ToTalkResponse());
+
 
             return new SpeakerResponse
             {

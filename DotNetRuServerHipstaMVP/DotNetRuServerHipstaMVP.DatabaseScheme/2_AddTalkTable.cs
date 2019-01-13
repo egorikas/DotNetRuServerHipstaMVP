@@ -3,7 +3,7 @@ using FluentMigrator;
 namespace DotNetRuServerHipstaMVP.DatabaseScheme
 {
     [Migration(2)]
-    public class AddTalkTable  : Migration
+    public class AddTalkTable : Migration
     {
         public override void Up()
         {
@@ -13,17 +13,17 @@ namespace DotNetRuServerHipstaMVP.DatabaseScheme
                 .AsString(100)
                 .NotNullable()
                 .PrimaryKey();
-            
+
             table
                 .WithColumn("Title")
                 .AsString(100)
-                .NotNullable();            
+                .NotNullable();
             table
                 .WithColumn("Description")
-                .AsString(100);         
+                .AsString(100);
             table
                 .WithColumn("CodeUrl")
-                .AsString(100); 
+                .AsString(100);
             table
                 .WithColumn("SlidesUrl")
                 .AsString(100);

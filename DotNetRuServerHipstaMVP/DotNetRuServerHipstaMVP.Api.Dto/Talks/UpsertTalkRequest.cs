@@ -1,21 +1,19 @@
-﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
-namespace DotNetRuServerHipstaMVP.Domain.Entities
+namespace DotNetRuServerHipstaMVP.Api.Dto.Talks
 {
-    public class Talk : IDraftable, IEntity, IUserVisible
+    public class UpsertTalkRequest
     {
+        [Required(ErrorMessage = "Заголовок должен быть заполнен")]
         public string Title { get; set; }
+
         public string Description { get; set; }
 
         public string CodeUrl { get; set; }
         public string SlidesUrl { get; set; }
         public string VideoUrl { get; set; }
 
-        public ICollection<SpeakerTalk> Speakers { get; set; }
-        public ICollection<SeeAlsoTalk> SeeAlsoTalks { get; set; }
-
         public bool IsDraft { get; set; }
-        public string Id { get; set; }
         public bool IsUserVisible { get; set; }
     }
 }
