@@ -135,5 +135,24 @@ namespace DotNetRuServerHipstaMVP.Api.Controllers.Talks
 
             return Ok();
         }
+
+        [Authorize]
+        [HttpDelete]
+        [Route("/talks/{talkId}/speakers/{speakerId}")]
+        [ProducesResponseType(typeof(OkResult), (int) HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ErrorResponse), (int) HttpStatusCode.NotAcceptable)]
+        public async Task<StatusCodeResult> LinkSpeakerToTalk(string talkId, string speakerId)
+        {
+            if (string.IsNullOrEmpty(talkId))
+                throw new ValidationException("talkId должно быть задано");
+            if (string.IsNullOrEmpty(speakerId))
+                throw new ValidationException("speakerId должно быть задано");
+
+            await _talkRepository.UnlinkSpeaker(talkId, speakerId);
+
+            await _unitOfWork.SaveChangesAsync();
+
+            return Ok();
+        }
     }
 }

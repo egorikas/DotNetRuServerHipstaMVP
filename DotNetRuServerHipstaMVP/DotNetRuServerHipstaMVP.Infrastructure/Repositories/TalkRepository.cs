@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using DotNetRuServerHipstaMVP.Domain.Entities;
+using DotNetRuServerHipstaMVP.Domain.Exceptions;
 using DotNetRuServerHipstaMVP.Domain.Interfaces;
 using DotNetRuServerHipstaMVP.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
@@ -55,6 +56,17 @@ namespace DotNetRuServerHipstaMVP.Infrastructure.Repositories
             talk.Id = "temp";
             await _context.Talks.AddAsync(talk);
             return talk.Id;
+        }
+
+        public async Task UnlinkSpeaker(string talkId, string speakerId)
+        {
+            var talk = await _context.Talks.Include(x => x.Speakers).FirstOrDefaultAsync(x => x.Id == speakerId);
+            if (talk == null) throw new NotFoundException("Доклад не найден");
+
+            var link = talk.Speakers?.FirstOrDefault(x => x.SpeakerId == speakerId);
+            if (link == null) throw new NotFoundException("Доклад не принадлежит докладчику");
+
+            _context.SpeakerTalks.Remove(link);
         }
     }
 }
