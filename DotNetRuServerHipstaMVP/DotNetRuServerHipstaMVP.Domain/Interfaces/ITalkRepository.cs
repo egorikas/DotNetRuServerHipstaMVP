@@ -10,13 +10,11 @@ namespace DotNetRuServerHipstaMVP.Domain.Interfaces
     {
         Task<int> CountAsync(Expression<Func<Talk, bool>> predicate);
 
-        Task<List<Talk>> GetListAsync(
-            bool takeForMobile,
-            bool takeDraft,
+        Task<List<Talk>> GetListAsync(bool onlyUserVisible,
+            bool onlyNonDraft,
             int skip,
             int take,
-            params Expression<Func<Talk, object>>[] includes
-        );
+            params Expression<Func<Talk, object>>[] includes);
 
         Task<Talk> GetByIdAsync(string id);
         Task<Talk> GetByIdWithSpeakersAsync(string id);

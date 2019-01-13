@@ -28,7 +28,7 @@ namespace DotNetRuServerHipstaMVP.Api.Controllers.Speakers
         [ProducesResponseType(typeof(SpeakerListResponse), (int) HttpStatusCode.OK)]
         public async Task<SpeakerListResponse> GetListAsync([FromQuery] int? skip, [FromQuery] int? take)
         {
-            var count = await _speakerRepository.CountAsync();
+            var count = await _speakerRepository.CountAsync(x => x.IsUserVisible);
             var speakers = await _speakerRepository.GetListAsync(true, skip ?? 0, take ?? count);
             return speakers.CreateSpeakerListResponse(count);
         }

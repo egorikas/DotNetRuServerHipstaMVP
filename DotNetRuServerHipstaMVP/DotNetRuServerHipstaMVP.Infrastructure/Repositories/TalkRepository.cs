@@ -24,13 +24,17 @@ namespace DotNetRuServerHipstaMVP.Infrastructure.Repositories
             return _context.Talks.CountAsync(predicate);
         }
 
-        public Task<List<Talk>> GetListAsync(bool takeForMobile, bool takeDraft, int skip, int take,
+        public Task<List<Talk>> GetListAsync(
+            bool onlyUserVisible,
+            bool onlyNonDraft,
+            int skip,
+            int take,
             params Expression<Func<Talk, object>>[] includes)
         {
             var query = _context.Talks.Includes(includes);
-            if (takeForMobile) query = query.Where(x => x.IsUserVisible);
 
-            if (!takeDraft) query = query.Where(x => x.IsDraft);
+            if (onlyUserVisible) query = query.Where(x => x.IsUserVisible);
+            if (onlyNonDraft) query = query.Where(x => !x.IsDraft);
 
             return query.Skip(skip).Take(take).ToListAsync();
         }

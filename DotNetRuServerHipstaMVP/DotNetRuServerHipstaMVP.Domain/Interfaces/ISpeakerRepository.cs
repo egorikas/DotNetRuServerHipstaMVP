@@ -9,8 +9,11 @@ namespace DotNetRuServerHipstaMVP.Domain.Interfaces
     public interface ISpeakerRepository
     {
         Task<int> CountAsync();
+        Task<int> CountAsync(Expression<Func<Speaker, bool>> predicate);
 
-        Task<List<Speaker>> GetListAsync(bool takeForMobile, int skip, int take,
+        Task<List<Speaker>> GetListAsync(bool onlyUserVisible,
+            int skip,
+            int take,
             params Expression<Func<Speaker, object>>[] includes);
 
         Task<Speaker> GetByIdAsync(string id);

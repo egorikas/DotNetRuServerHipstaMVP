@@ -24,10 +24,23 @@ namespace DotNetRuServerHipstaMVP.Infrastructure.Repositories
             return _context.Speakers.CountAsync();
         }
 
-        public Task<List<Speaker>> GetListAsync(bool takeForMobile, int skip, int take,
-            params Expression<Func<Speaker, object>>[] includes)
+        public Task<int> CountAsync(Expression<Func<Speaker, bool>> predicate)
         {
-            return _context.Speakers.Includes(includes).Where(x => x.IsUserVisible == takeForMobile).Skip(skip)
+            return _context.Speakers.CountAsync(predicate);
+        }
+
+        public Task<List<Speaker>> GetListAsync(
+            bool onlyUserVisible,
+            int skip,
+            int take,
+            params Expression<Func<Speaker, object>>[] includes
+        )
+        {
+            var query = _context.Speakers.Includes(includes);
+
+            if (onlyUserVisible) query = query.Where(x => x.IsUserVisible);
+
+            return query.Skip(skip)
                 .Take(take).ToListAsync();
         }
 
