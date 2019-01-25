@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetRuServerHipstaMVP.Dat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetRuServerHipstaMVP.Api.Dto", "DotNetRuServerHipstaMVP.Api.Dto\DotNetRuServerHipstaMVP.Api.Dto.csproj", "{E867B356-1D5B-4624-BB94-B17A4D5A3A6D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{3DD76C28-CD6E-4DE5-938A-1AA8E91AFA31}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,8 @@ Global
 		{E867B356-1D5B-4624-BB94-B17A4D5A3A6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E867B356-1D5B-4624-BB94-B17A4D5A3A6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E867B356-1D5B-4624-BB94-B17A4D5A3A6D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{72BF8045-1B7A-464A-8CFE-11D8964BFB71} = {3DD76C28-CD6E-4DE5-938A-1AA8E91AFA31}
 	EndGlobalSection
 EndGlobal
