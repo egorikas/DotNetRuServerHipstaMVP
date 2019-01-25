@@ -10,6 +10,11 @@ namespace DotNetRuServerHipstaMVP.DatabaseScheme
             var table = Create.Table("Talks");
             table
                 .WithColumn("Id")
+                .AsInt32()
+                .NotNullable()
+                .PrimaryKey();
+            table
+                .WithColumn("ExportId")
                 .AsString(100)
                 .NotNullable()
                 .PrimaryKey();

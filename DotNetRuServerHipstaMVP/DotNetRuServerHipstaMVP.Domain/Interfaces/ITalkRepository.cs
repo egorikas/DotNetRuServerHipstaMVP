@@ -16,11 +16,11 @@ namespace DotNetRuServerHipstaMVP.Domain.Interfaces
             int take,
             params Expression<Func<Talk, object>>[] includes);
 
-        Task<Talk> GetByIdAsync(string id);
-        Task<Talk> GetByIdWithSpeakersAsync(string id);
+        Task<Talk> GetByIdAsync(int id);
+        Task<Talk> GetByIdWithSpeakersAsync(int id);
 
-        Task<string> AddAsync(Talk talk);
+        Task<int> AddAsync(Talk talk);
 
-        Task UnlinkSpeaker(string talkId, string speakerId);
+        Task UnlinkSpeaker(int talkId, int speakerId);
     }
 }

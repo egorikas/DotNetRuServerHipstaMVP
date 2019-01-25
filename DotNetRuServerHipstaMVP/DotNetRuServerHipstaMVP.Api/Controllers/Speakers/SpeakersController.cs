@@ -47,21 +47,18 @@ namespace DotNetRuServerHipstaMVP.Api.Controllers.Speakers
         [HttpGet]
         [Route("/speakers/{speakerId}")]
         [ProducesResponseType(typeof(SpeakerResponse), (int) HttpStatusCode.OK)]
-        public async Task<SpeakerResponse> GetSpeakerAsync(string speakerId)
+        public async Task<SpeakerResponse> GetSpeakerAsync(int speakerId)
         {
-            if (string.IsNullOrEmpty(speakerId))
-                throw new ValidationException("speakerId должно быть задано");
-
-            var speaker = await _speakerRepository.GetByIdWithTalksAsync(speakerId.Trim());
+            var speaker = await _speakerRepository.GetByIdWithTalksAsync(speakerId);
             return speaker.CreateSpeakerResponse();
         }
 
         [Authorize]
         [HttpPost]
         [Route("/speakers")]
-        [ProducesResponseType(typeof(string), (int) HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(int), (int) HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ErrorResponse), (int) HttpStatusCode.NotAcceptable)]
-        public Task<string> AddSpeakerAsync([FromBody] UpsertSpeakerRequest request)
+        public Task<int> AddSpeakerAsync([FromBody] UpsertSpeakerRequest request)
         {
             this.ValidateRequest(request);
 
@@ -74,12 +71,10 @@ namespace DotNetRuServerHipstaMVP.Api.Controllers.Speakers
         [Route("/speakers/{speakerId}")]
         [ProducesResponseType(typeof(OkResult), (int) HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ErrorResponse), (int) HttpStatusCode.NotAcceptable)]
-        public async Task<StatusCodeResult> UpdateSpeakerAsync(string speakerId,
+        public async Task<StatusCodeResult> UpdateSpeakerAsync(int speakerId,
             [FromBody] UpsertSpeakerRequest request)
         {
             this.ValidateRequest(request);
-            if (string.IsNullOrEmpty(speakerId))
-                throw new ValidationException("speakerId должно быть задано");
 
             var savedSpeaker = await _speakerRepository.GetByIdAsync(speakerId);
             savedSpeaker.Name = request.Name;

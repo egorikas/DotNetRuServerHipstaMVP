@@ -44,21 +44,20 @@ namespace DotNetRuServerHipstaMVP.Infrastructure.Repositories
                 .Take(take).ToListAsync();
         }
 
-        public Task<Speaker> GetByIdAsync(string id)
+        public Task<Speaker> GetByIdAsync(int id)
         {
             return _context.Speakers.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public Task<Speaker> GetByIdWithTalksAsync(string id)
+        public Task<Speaker> GetByIdWithTalksAsync(int id)
         {
             return _context.Speakers.Include(x => x.Talks).ThenInclude(x => x.Talk)
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 
 
-        public async Task<string> AddAsync(Speaker speaker)
+        public async Task<int> AddAsync(Speaker speaker)
         {
-            speaker.Id = "temp";
             await _context.Speakers.AddAsync(speaker);
             return speaker.Id;
         }

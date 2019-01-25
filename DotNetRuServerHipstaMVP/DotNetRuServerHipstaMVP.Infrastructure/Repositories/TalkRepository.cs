@@ -40,25 +40,24 @@ namespace DotNetRuServerHipstaMVP.Infrastructure.Repositories
             return query.Skip(skip).Take(take).ToListAsync();
         }
 
-        public Task<Talk> GetByIdAsync(string id)
+        public Task<Talk> GetByIdAsync(int id)
         {
             return _context.Talks.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public Task<Talk> GetByIdWithSpeakersAsync(string id)
+        public Task<Talk> GetByIdWithSpeakersAsync(int id)
         {
             return _context.Talks.Include(x => x.Speakers).ThenInclude(x => x.Speaker)
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<string> AddAsync(Talk talk)
+        public async Task<int> AddAsync(Talk talk)
         {
-            talk.Id = "temp";
             await _context.Talks.AddAsync(talk);
             return talk.Id;
         }
 
-        public async Task UnlinkSpeaker(string talkId, string speakerId)
+        public async Task UnlinkSpeaker(int talkId, int speakerId)
         {
             var talk = await _context.Talks.Include(x => x.Speakers).FirstOrDefaultAsync(x => x.Id == speakerId);
             if (talk == null) throw new NotFoundException("Доклад не найден");

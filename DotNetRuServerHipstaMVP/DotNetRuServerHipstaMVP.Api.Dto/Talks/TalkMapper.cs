@@ -12,6 +12,7 @@ namespace DotNetRuServerHipstaMVP.Api.Dto.Talks
             var response = new TalkResponse
             {
                 Id = talk.Id,
+                ExportId = talk.ExportId,
                 Description = talk.Description,
                 Title = talk.Title,
                 CodeUrl = talk.CodeUrl,

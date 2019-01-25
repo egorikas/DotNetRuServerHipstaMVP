@@ -2,8 +2,11 @@ using System.Collections.Generic;
 
 namespace DotNetRuServerHipstaMVP.Domain.Entities
 {
-    public class Speaker : IEntity, IUserVisible
+    public class Speaker : IUserVisible
     {
+        public int Id { get; set; }
+        public string ExportId { get; set; }
+        
         public string Name { get; set; }
         public string CompanyName { get; set; }
         public string CompanyUrl { get; set; }
@@ -16,7 +19,7 @@ namespace DotNetRuServerHipstaMVP.Domain.Entities
         public string GitHubUrl { get; set; }
 
         public ICollection<SpeakerTalk> Talks { get; set; }
-        public string Id { get; set; }
+
         public bool IsUserVisible { get; set; }
     }
 }

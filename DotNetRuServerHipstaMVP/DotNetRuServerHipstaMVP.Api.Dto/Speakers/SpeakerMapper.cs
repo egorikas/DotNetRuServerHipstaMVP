@@ -28,6 +28,7 @@ namespace DotNetRuServerHipstaMVP.Api.Dto.Speakers
             return new SpeakerResponse
             {
                 Id = speaker.Id,
+                ExportId = speaker.ExportId,
                 Name = speaker.Name,
                 Description = speaker.Description,
                 BlogUrl = speaker.BlogUrl,

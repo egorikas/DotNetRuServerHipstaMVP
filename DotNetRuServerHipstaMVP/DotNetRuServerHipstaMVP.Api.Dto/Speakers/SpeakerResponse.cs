@@ -5,7 +5,8 @@ namespace DotNetRuServerHipstaMVP.Api.Dto.Speakers
 {
     public class SpeakerResponse
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
+        public string ExportId { get; set; }
         public string Name { get; set; }
         public string CompanyName { get; set; }
         public string CompanyUrl { get; set; }

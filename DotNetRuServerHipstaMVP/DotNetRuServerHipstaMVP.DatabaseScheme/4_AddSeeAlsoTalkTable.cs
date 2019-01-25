@@ -11,11 +11,11 @@ namespace DotNetRuServerHipstaMVP.DatabaseScheme
 
             table
                 .WithColumn("ParentTalkId")
-                .AsString(100)
+                .AsInt32()
                 .NotNullable();
             table
                 .WithColumn("ChildTalkId")
-                .AsString(100)
+                .AsInt32()
                 .NotNullable();
 
             Create.PrimaryKey("SeeAlsoTalksId")

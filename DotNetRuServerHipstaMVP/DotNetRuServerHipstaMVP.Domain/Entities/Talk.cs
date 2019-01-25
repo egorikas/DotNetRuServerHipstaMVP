@@ -2,8 +2,11 @@
 
 namespace DotNetRuServerHipstaMVP.Domain.Entities
 {
-    public class Talk : IDraftable, IEntity, IUserVisible
+    public class Talk : IDraftable, IUserVisible
     {
+        public int Id { get; set; }
+        public string ExportId { get; set; }
+        
         public string Title { get; set; }
         public string Description { get; set; }
 
@@ -15,7 +18,6 @@ namespace DotNetRuServerHipstaMVP.Domain.Entities
         public ICollection<SeeAlsoTalk> SeeAlsoTalks { get; set; }
 
         public bool IsDraft { get; set; }
-        public string Id { get; set; }
         public bool IsUserVisible { get; set; }
     }
 }

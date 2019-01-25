@@ -52,11 +52,8 @@ namespace DotNetRuServerHipstaMVP.Api.Controllers.Talks
         [HttpGet]
         [Route("/talks/{talkId}")]
         [ProducesResponseType(typeof(TalkResponse), (int) HttpStatusCode.OK)]
-        public async Task<TalkResponse> GetTalkAsync(string talkId)
+        public async Task<TalkResponse> GetTalkAsync(int talkId)
         {
-            if (string.IsNullOrEmpty(talkId))
-                throw new ValidationException("talkId должно быть задано");
-
             var talk = await _talkRepository.GetByIdWithSpeakersAsync(talkId);
             return talk.ToTalkResponse();
         }
@@ -66,7 +63,7 @@ namespace DotNetRuServerHipstaMVP.Api.Controllers.Talks
         [Route("/talks")]
         [ProducesResponseType(typeof(string), (int) HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ErrorResponse), (int) HttpStatusCode.NotAcceptable)]
-        public Task<string> AddSpeakerAsync([FromBody] UpsertTalkRequest request)
+        public Task<int> AddSpeakerAsync([FromBody] UpsertTalkRequest request)
         {
             this.ValidateRequest(request);
 
@@ -79,12 +76,10 @@ namespace DotNetRuServerHipstaMVP.Api.Controllers.Talks
         [Route("/talks/{talkId}")]
         [ProducesResponseType(typeof(OkResult), (int) HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ErrorResponse), (int) HttpStatusCode.NotAcceptable)]
-        public async Task<StatusCodeResult> UpdateSpeakerAsync(string talkId,
+        public async Task<StatusCodeResult> UpdateSpeakerAsync(int talkId,
             [FromBody] UpsertTalkRequest request)
         {
             this.ValidateRequest(request);
-            if (string.IsNullOrEmpty(talkId))
-                throw new ValidationException("talkId должно быть задано");
 
             var savedTalk = await _talkRepository.GetByIdAsync(talkId);
             if (savedTalk == null)
@@ -108,11 +103,9 @@ namespace DotNetRuServerHipstaMVP.Api.Controllers.Talks
         [Route("/talks/{talkId}/speakers")]
         [ProducesResponseType(typeof(OkResult), (int) HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ErrorResponse), (int) HttpStatusCode.NotAcceptable)]
-        public async Task<StatusCodeResult> LinkSpeakerToTalk(string talkId, LinkSpeakerToTalkRequest request)
+        public async Task<StatusCodeResult> LinkSpeakerToTalk(int talkId, LinkSpeakerToTalkRequest request)
         {
             this.ValidateRequest(request);
-            if (string.IsNullOrEmpty(talkId))
-                throw new ValidationException("talkId должно быть задано");
 
             var savedTalk = await _talkRepository.GetByIdAsync(talkId);
             if (savedTalk == null)
@@ -141,15 +134,9 @@ namespace DotNetRuServerHipstaMVP.Api.Controllers.Talks
         [Route("/talks/{talkId}/speakers/{speakerId}")]
         [ProducesResponseType(typeof(OkResult), (int) HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ErrorResponse), (int) HttpStatusCode.NotAcceptable)]
-        public async Task<StatusCodeResult> LinkSpeakerToTalk(string talkId, string speakerId)
+        public async Task<StatusCodeResult> LinkSpeakerToTalk(int talkId, int speakerId)
         {
-            if (string.IsNullOrEmpty(talkId))
-                throw new ValidationException("talkId должно быть задано");
-            if (string.IsNullOrEmpty(speakerId))
-                throw new ValidationException("speakerId должно быть задано");
-
             await _talkRepository.UnlinkSpeaker(talkId, speakerId);
-
             await _unitOfWork.SaveChangesAsync();
 
             return Ok();

@@ -5,7 +5,8 @@ namespace DotNetRuServerHipstaMVP.Api.Dto.Talks
 {
     public class TalkResponse
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
+        public string ExportId { get; set; }
 
         public string Title { get; set; }
         public string Description { get; set; }
