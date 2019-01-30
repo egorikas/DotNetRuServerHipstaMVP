@@ -12,11 +12,13 @@ namespace DotNetRuServerHipstaMVP.DatabaseScheme
             table
                 .WithColumn("ParentTalkId")
                 .AsInt32()
-                .NotNullable();
+                .NotNullable()
+                .ForeignKey("Talks", "Id");
             table
                 .WithColumn("ChildTalkId")
                 .AsInt32()
-                .NotNullable();
+                .NotNullable()
+                .ForeignKey("Talks", "Id");
 
             Create.PrimaryKey("SeeAlsoTalksId")
                 .OnTable("SeeAlsoTalks")

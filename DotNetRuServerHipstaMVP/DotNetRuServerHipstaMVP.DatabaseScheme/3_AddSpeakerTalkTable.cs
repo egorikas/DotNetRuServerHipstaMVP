@@ -12,11 +12,13 @@ namespace DotNetRuServerHipstaMVP.DatabaseScheme
             table
                 .WithColumn("SpeakerId")
                 .AsInt32()
-                .NotNullable();
+                .NotNullable()
+                .ForeignKey("Speakers", "Id");
             table
                 .WithColumn("TalkId")
                 .AsInt32()
-                .NotNullable();
+                .NotNullable()
+                .ForeignKey("Talks", "Id");
 
             Create.PrimaryKey("SpeakerTalksId")
                 .OnTable("SpeakerTalks")

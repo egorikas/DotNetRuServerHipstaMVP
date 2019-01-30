@@ -6,7 +6,11 @@ namespace DotNetRuServerHipstaMVP.DatabaseScheme
     {
         public override void Up()
         {
-            Create.Column("IsUserVisible").OnTable("Speakers");
+            Create
+                .Column("IsUserVisible")
+                .OnTable("Speakers")
+                .AsBoolean()
+                .WithDefaultValue(false);
         }
 
         public override void Down()
