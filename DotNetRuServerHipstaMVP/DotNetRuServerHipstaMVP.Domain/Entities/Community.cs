@@ -1,0 +1,12 @@
+namespace DotNetRuServerHipstaMVP.Domain.Entities
+{
+    public class Community
+    {
+        public int Id { get; set; }
+        public string ExportId { get; set; }
+        
+        public string Name { get; set; }
+        public string City { get; set; }
+        public string TimeZone { get; set; }
+    }
+}

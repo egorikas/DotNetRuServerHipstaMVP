@@ -13,6 +13,9 @@ namespace DotNetRuServerHipstaMVP.Domain.Entities
         public string CodeUrl { get; set; }
         public string SlidesUrl { get; set; }
         public string VideoUrl { get; set; }
+        
+        public int? MeetupId { get; set; }
+        public Meetup Meetup { get; set; }
 
         public ICollection<SpeakerTalk> Speakers { get; set; }
         public ICollection<SeeAlsoTalk> SeeAlsoTalks { get; set; }

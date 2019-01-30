@@ -1,0 +1,15 @@
+using System;
+
+namespace DotNetRuServerHipstaMVP.Domain.Entities
+{
+    public class Session
+    {
+        public int Id { get; set; }
+
+        public int TalkId { get; set; }
+        public Talk Talk { get; set; }
+
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+    }
+}

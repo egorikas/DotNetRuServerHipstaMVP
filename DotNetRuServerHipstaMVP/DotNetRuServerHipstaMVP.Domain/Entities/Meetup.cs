@@ -1,4 +1,5 @@
-using System;
+using System.Collections.Generic;
+using System.Dynamic;
 
 namespace DotNetRuServerHipstaMVP.Domain.Entities
 {
@@ -6,35 +7,13 @@ namespace DotNetRuServerHipstaMVP.Domain.Entities
     {
         public int Id { get; set; }
         public string ExportId { get; set; }
-        
+
         public string Name { get; set; }
         public Session[] Sessions { get; set; }
-        
-    }
-    
-    public class Session {
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
+
+        public Venue Venue { get; set; }
+        public Community Community { get; set; }
+        public List<Talk> Talks { get; set; }
+        public List<FriendAtMeetup> Friends { get; set; }
     }
 }
-
-//class Session
-//{
-//    [string] $TalkId
-//        [DateTime] $StartTime
-//        [DateTime] $EndTime
-//}
-
-
-//[string] $Name
-//[string] $CommunityId
-//
-//# Obsolete. Use Sessions property
-//[DateTime] $Date
-//
-//[string[]] $FriendIds
-//[string] $VenueId
-//[Session[]] $Sessions
-//
-//# Obsolete. Use Sessions property
-//[string[]] $TalkIds
