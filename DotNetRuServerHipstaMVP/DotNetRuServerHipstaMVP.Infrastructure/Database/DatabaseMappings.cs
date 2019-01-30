@@ -60,5 +60,67 @@ namespace DotNetRuServerHipstaMVP.Infrastructure.Database
             seeAlsoTalk.HasOne(x => x.ParentTalk).WithMany(x => x.SeeAlsoTalks).HasForeignKey(x => x.ParentTalkId);
             seeAlsoTalk.HasOne(x => x.ChildTalk).WithMany(x => x.SeeAlsoTalks).HasForeignKey(x => x.ChildTalkId);
         }
+
+        public static void BindVenue(this EntityTypeBuilder<Venue> venue)
+        {
+            venue.ToTable("Venues");
+
+            venue.Property(x => x.Id).HasColumnName("Id");
+            venue.Property(x => x.ExportId).HasColumnName("ExportId");
+            venue.Property(x => x.Name).HasColumnName("Name");
+            venue.Property(x => x.MapUrl).HasColumnName("MapUrl");
+        }
+
+        public static void BindCommunities(this EntityTypeBuilder<Community> community)
+        {
+            community.ToTable("Communities");
+
+            community.Property(x => x.Id).HasColumnName("Id");
+            community.Property(x => x.ExportId).HasColumnName("ExportId");
+            community.Property(x => x.Name).HasColumnName("Name");
+            community.Property(x => x.City).HasColumnName("City");
+            community.Property(x => x.TimeZone).HasColumnName("TimeZone");
+        }
+
+        public static void BindFriend(this EntityTypeBuilder<Friend> friend)
+        {
+            friend.ToTable("Friends");
+
+            friend.Property(x => x.Id).HasColumnName("Id");
+            friend.Property(x => x.ExportId).HasColumnName("ExportId");
+            friend.Property(x => x.Name).HasColumnName("Name");
+            friend.Property(x => x.Description).HasColumnName("Description");
+            friend.Property(x => x.Url).HasColumnName("Url");
+        }
+
+        public static void BindMeetup(this EntityTypeBuilder<Meetup> meetup)
+        {
+            meetup.ToTable("Meetups");
+
+            meetup.Property(x => x.Id).HasColumnName("Id");
+            meetup.Property(x => x.ExportId).HasColumnName("ExportId");
+            meetup.Property(x => x.Name).HasColumnName("Name");
+
+            meetup.Property(x => x.VenueId).HasColumnName("VenueId");
+            meetup.Property(x => x.CommunityId).HasColumnName("CommunityId");
+
+            meetup.HasOne(x => x.Venue).WithMany(x => x.Meetups);
+            meetup.HasOne(x => x.Community).WithMany(x => x.Meetups);
+            meetup.HasMany(x => x.Talks).WithOne(x => x.Meetup);
+            meetup.HasMany(x => x.Sessions).WithOne(x => x.Meetup);
+            meetup.HasMany(x => x.Friends).WithOne(x => x.Meetup);
+        }
+
+        public static void BindSession(this EntityTypeBuilder<Session> session)
+        {
+            session.ToTable("Sessions");
+
+            session.Property(x => x.Id).HasColumnName("Id");
+            session.Property(x => x.TalkId).HasColumnName("TalkId");
+            session.Property(x => x.MeetupId).HasColumnName("MeetupId");
+
+            session.Property(x => x.StartTime).HasColumnName("StartTime");
+            session.Property(x => x.EndTime).HasColumnName("EndTime");
+        }
     }
 }

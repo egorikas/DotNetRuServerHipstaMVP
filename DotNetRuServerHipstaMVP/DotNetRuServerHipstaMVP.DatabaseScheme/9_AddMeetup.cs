@@ -2,7 +2,7 @@ using FluentMigrator;
 
 namespace DotNetRuServerHipstaMVP.DatabaseScheme
 {
-    public class AddMeetup  : Migration
+    public class AddMeetup : Migration
     {
         public override void Up()
         {
@@ -17,7 +17,7 @@ namespace DotNetRuServerHipstaMVP.DatabaseScheme
                 .AsString(100)
                 .NotNullable()
                 .PrimaryKey();
-            
+
             table
                 .WithColumn("Name")
                 .AsString(100)
