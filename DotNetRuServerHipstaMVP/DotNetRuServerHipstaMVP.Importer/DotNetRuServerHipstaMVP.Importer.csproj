@@ -3,11 +3,16 @@
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>netcoreapp2.2</TargetFramework>
+        <LangVersion>latest</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\DotNetRuServerHipstaMVP.Domain\DotNetRuServerHipstaMVP.Domain.csproj"/>
         <ProjectReference Include="..\DotNetRuServerHipstaMVP.Infrastructure\DotNetRuServerHipstaMVP.Infrastructure.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Octokit" Version="0.32.0"/>
     </ItemGroup>
 
 </Project>

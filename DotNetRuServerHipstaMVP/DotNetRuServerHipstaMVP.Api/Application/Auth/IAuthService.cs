@@ -8,5 +8,4 @@ namespace DotNetRuServerHipstaMVP.Api.Application.Auth
         Task<AuthToken> Generate(int userId);
         Task CheckPassword(int userId, string oldPassword);
     }
-
 }

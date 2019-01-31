@@ -19,5 +19,4 @@ namespace DotNetRuServerHipstaMVP.Api.Application.Extensions
             throw new ValidationException(messages);
         }
     }
-
 }

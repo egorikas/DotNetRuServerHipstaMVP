@@ -15,5 +15,4 @@ namespace DotNetRuServerHipstaMVP.Api.Application.Options
             return new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Key));
         }
     }
-
 }

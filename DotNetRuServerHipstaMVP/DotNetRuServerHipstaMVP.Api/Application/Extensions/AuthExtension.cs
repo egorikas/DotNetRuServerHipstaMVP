@@ -1,5 +1,3 @@
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Threading.Tasks;
 using DotNetRuServerHipstaMVP.Api.Application.ExceptionFilter;
 using DotNetRuServerHipstaMVP.Api.Application.Options;
@@ -11,7 +9,7 @@ using Newtonsoft.Json;
 
 namespace DotNetRuServerHipstaMVP.Api.Application.Extensions
 {
-  public static class AuthExtension
+    public static class AuthExtension
     {
         public static void ConfigureAuth(this IServiceCollection services, AuthOptions authOptions)
         {
@@ -61,5 +59,4 @@ namespace DotNetRuServerHipstaMVP.Api.Application.Extensions
             }
         }
     }
-
 }

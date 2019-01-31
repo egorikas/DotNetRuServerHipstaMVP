@@ -31,5 +31,4 @@ namespace DotNetRuServerHipstaMVP.Api.Controllers.Auth
             return new AuthTokenResponse {AuthToken = token.Token};
         }
     }
-
 }

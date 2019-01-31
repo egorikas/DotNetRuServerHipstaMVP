@@ -44,17 +44,16 @@ namespace DotNetRuServerHipstaMVP.Api.Application.Auth
         {
             throw new NotImplementedException();
         }
-        
+
         private JwtSecurityToken GenerateToken()
         {
-            
             var claims = new[]
             {
                 new Claim(JwtRegisteredClaimNames.Sub, "dotnetru@dotnetru.com"),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             };
 
-            
+
             var key = _authOptions.Value.GetSymmetricSecurityKey();
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
             var authToken = new JwtSecurityToken(
@@ -66,6 +65,5 @@ namespace DotNetRuServerHipstaMVP.Api.Application.Auth
 
             return authToken;
         }
-
     }
 }

@@ -13,12 +13,7 @@ namespace DotNetRuServerHipstaMVP.Api.Application.Extensions
             corsBuilder.AllowAnyOrigin();
             corsBuilder.AllowCredentials();
 
-            services.AddCors(options =>
-            {
-                options.AddPolicy("MyCorsPolicy", corsBuilder.Build());
-            });
-
+            services.AddCors(options => { options.AddPolicy("MyCorsPolicy", corsBuilder.Build()); });
         }
     }
-
 }

@@ -35,9 +35,9 @@ namespace DotNetRuServerHipstaMVP.Api
             var authOption = new AuthOptions();
             _configuration.GetSection("Auth").Bind(authOption);
             services.ConfigureAuth(authOption);
-                     
+
             services.ConfigureDependencies(_configuration);
-          
+
             services
                 .AddMvc(options => { options.Filters.Add(typeof(ExceptionFilter)); })
                 .AddJsonOptions(options =>
@@ -46,8 +46,8 @@ namespace DotNetRuServerHipstaMVP.Api
                     options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            
-            
+
+
             services.AddSwaggerGen(c =>
             {
                 c.CustomSchemaIds(x => x.FullName);
@@ -68,7 +68,6 @@ namespace DotNetRuServerHipstaMVP.Api
                 });
                 c.AddSecurityRequirement(security);
             });
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -86,7 +85,6 @@ namespace DotNetRuServerHipstaMVP.Api
             app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "DotNetRu V1"); });
 
             app.UseMvc();
-
         }
     }
 }

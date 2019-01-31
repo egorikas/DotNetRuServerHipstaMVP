@@ -14,7 +14,6 @@ namespace DotNetRuServerHipstaMVP.Api.Application.Extensions
                 options.UseSqlServer(configuration.GetConnectionString("Database")));
 
             services.AddTransient<IAuthService, AuthService>();
-
         }
     }
 }

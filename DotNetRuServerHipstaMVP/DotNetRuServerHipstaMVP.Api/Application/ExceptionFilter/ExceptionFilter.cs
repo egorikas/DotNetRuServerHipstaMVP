@@ -26,9 +26,8 @@ namespace DotNetRuServerHipstaMVP.Api.Application.ExceptionFilter
                     return;
                 case NotFoundException ex:
                     context.Result =
-                        new NotFoundObjectResult(new ErrorResponse {Errors = new[] { ex.Message }});
+                        new NotFoundObjectResult(new ErrorResponse {Errors = new[] {ex.Message}});
                     return;
-
             }
 
             _logger.LogError(
@@ -37,8 +36,8 @@ namespace DotNetRuServerHipstaMVP.Api.Application.ExceptionFilter
             );
 
             context.Result =
-                new InternalServerErrorObjectResult(new ErrorResponse { Errors = new[] { context.Exception.ToString() } });
-           
+                new InternalServerErrorObjectResult(new ErrorResponse {Errors = new[] {context.Exception.ToString()}});
+
             context.ExceptionHandled = true;
         }
     }
@@ -47,7 +46,7 @@ namespace DotNetRuServerHipstaMVP.Api.Application.ExceptionFilter
     {
         public string[] Errors { get; set; }
     }
-    
+
     public class InternalServerErrorObjectResult : ObjectResult
     {
         public InternalServerErrorObjectResult(object value)
@@ -56,7 +55,7 @@ namespace DotNetRuServerHipstaMVP.Api.Application.ExceptionFilter
             StatusCode = (int) HttpStatusCode.InternalServerError;
         }
     }
-    
+
     public class NotAcceptableObjectResult : ObjectResult
     {
         public NotAcceptableObjectResult(object value)
@@ -74,5 +73,4 @@ namespace DotNetRuServerHipstaMVP.Api.Application.ExceptionFilter
             StatusCode = (int) HttpStatusCode.NotFound;
         }
     }
-
 }

@@ -19,5 +19,4 @@ namespace DotNetRuServerHipstaMVP.Infrastructure.Database
             return source;
         }
     }
-
 }

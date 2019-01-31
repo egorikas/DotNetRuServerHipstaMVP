@@ -16,5 +16,4 @@ namespace DotNetRuServerHipstaMVP.Domain.Exceptions
             Exceptions = exceptions;
         }
     }
-
 }
