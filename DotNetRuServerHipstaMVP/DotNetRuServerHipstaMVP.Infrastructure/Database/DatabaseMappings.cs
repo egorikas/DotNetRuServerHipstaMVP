@@ -122,5 +122,16 @@ namespace DotNetRuServerHipstaMVP.Infrastructure.Database
             session.Property(x => x.StartTime).HasColumnName("StartTime");
             session.Property(x => x.EndTime).HasColumnName("EndTime");
         }
+
+        public static void BindFriendAtMeetup(this EntityTypeBuilder<FriendAtMeetup> friendAtMeetup)
+        {
+            friendAtMeetup.ToTable("FriendAtMeetup");
+
+            friendAtMeetup.Property(x => x.MeetupId).HasColumnName("MeetupId");
+            friendAtMeetup.Property(x => x.FriendId).HasColumnName("FriendId");
+
+            friendAtMeetup.HasOne(x => x.Friend);
+            friendAtMeetup.HasOne(x => x.Meetup).WithMany(x => x.Friends);
+        }
     }
 }
