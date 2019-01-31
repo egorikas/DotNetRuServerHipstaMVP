@@ -53,6 +53,7 @@ namespace DotNetRuServerHipstaMVP.Infrastructure.Repositories
 
         public async Task<int> AddAsync(Talk talk)
         {
+            // TODO MAKE GENERATION OF ID
             await _context.Talks.AddAsync(talk);
             return talk.Id;
         }

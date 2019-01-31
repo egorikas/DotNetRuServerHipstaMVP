@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using DotNetRuServerHipstaMVP.Api.Application.ExceptionFilter;
 using DotNetRuServerHipstaMVP.Api.Application.Extensions;
 using DotNetRuServerHipstaMVP.Api.Dto.Speakers;
-using DotNetRuServerHipstaMVP.Domain.Exceptions;
 using DotNetRuServerHipstaMVP.Domain.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -61,7 +60,7 @@ namespace DotNetRuServerHipstaMVP.Api.Controllers.Speakers
         public Task<int> AddSpeakerAsync([FromBody] UpsertSpeakerRequest request)
         {
             this.ValidateRequest(request);
-
+            // TODO MAKE GENERATION OF ID
             var newSpeaker = request.CreateSpeaker();
             return _speakerRepository.AddAsync(newSpeaker);
         }
