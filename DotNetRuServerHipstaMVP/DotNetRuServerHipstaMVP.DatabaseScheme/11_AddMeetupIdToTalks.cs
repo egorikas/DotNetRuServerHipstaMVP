@@ -2,12 +2,13 @@ using FluentMigrator;
 
 namespace DotNetRuServerHipstaMVP.DatabaseScheme
 {
+    [Migration(11)]
     public class AddMeetupIdToTalks : Migration
     {
         public override void Up()
         {
             Create
-                .Column("MeetupID")
+                .Column("MeetupId")
                 .OnTable("Talks")
                 .AsInt32()
                 .Nullable()
@@ -16,7 +17,7 @@ namespace DotNetRuServerHipstaMVP.DatabaseScheme
 
         public override void Down()
         {
-            Delete.Column("MeetupID").FromTable("Talks");
+            Delete.Column("MeetupId").FromTable("Talks");
         }
     }
 }

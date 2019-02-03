@@ -12,40 +12,57 @@ namespace DotNetRuServerHipstaMVP.DatabaseScheme
                 .WithColumn("Id")
                 .AsInt32()
                 .NotNullable()
-                .PrimaryKey();
+                .PrimaryKey()
+                .Identity();
             table
                 .WithColumn("ExportId")
                 .AsString(100)
                 .NotNullable()
-                .PrimaryKey();
+                .Unique();
             table
                 .WithColumn("Name")
                 .AsString(100)
                 .NotNullable();
             table
                 .WithColumn("CompanyName")
-                .AsString(100);
+                .AsString(100)
+                .Nullable();
             table
                 .WithColumn("CompanyUrl")
-                .AsString(100);
+                .AsString(100)
+                .Nullable();
             table
                 .WithColumn("Description")
-                .AsString(100);
+                .AsString(3000)
+                .Nullable();
             table
                 .WithColumn("BlogUrl")
-                .AsString(100);
+                .AsString(300)
+                .Nullable();
             table
                 .WithColumn("ContactsUrl")
-                .AsString(100);
+                .AsString(300)
+                .Nullable();
             table
                 .WithColumn("TwitterUrl")
-                .AsString(50);
+                .AsString(300)
+                .Nullable();
             table
                 .WithColumn("HabrUrl")
-                .AsString(50);
+                .AsString(300)
+                .Nullable();
             table
                 .WithColumn("GithubUrl")
-                .AsString(50);
+                .AsString(300)
+                .Nullable();
+            table
+                .WithColumn("AvatarUrl")
+                .AsString(300)
+                .Nullable();
+            table
+                .WithColumn("AvatarSmallUrl")
+                .AsString(300)
+                .Nullable();
         }
 
         public override void Down()

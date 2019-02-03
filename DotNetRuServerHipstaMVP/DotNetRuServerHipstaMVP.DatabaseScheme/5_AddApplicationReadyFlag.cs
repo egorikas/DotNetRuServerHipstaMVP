@@ -2,6 +2,7 @@ using FluentMigrator;
 
 namespace DotNetRuServerHipstaMVP.DatabaseScheme
 {
+    [Migration(5)]
     public class AddApplicationReadyFlag : Migration
     {
         public override void Up()
@@ -11,11 +12,17 @@ namespace DotNetRuServerHipstaMVP.DatabaseScheme
                 .OnTable("Speakers")
                 .AsBoolean()
                 .WithDefaultValue(false);
+            Create
+                .Column("IsUserVisible")
+                .OnTable("Talks")
+                .AsBoolean()
+                .WithDefaultValue(false);
         }
 
         public override void Down()
         {
             Delete.Column("IsUserVisible").FromTable("Speakers");
+            Delete.Column("IsUserVisible").FromTable("Talks");
         }
     }
 }

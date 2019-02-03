@@ -8,5 +8,8 @@ namespace DotNetRuServerHipstaMVP.Domain.Entities
         public string Name { get; set; }
         public string Url { get; set; }
         public string Description { get; set; }
+
+        public string LogoUrl { get; set; }
+        public string SmallLogoUrl { get; set; }
     }
 }

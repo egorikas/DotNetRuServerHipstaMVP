@@ -2,6 +2,7 @@ using FluentMigrator;
 
 namespace DotNetRuServerHipstaMVP.DatabaseScheme
 {
+    [Migration(6)]
     public class AddVenue : Migration
     {
         public override void Up()
@@ -11,12 +12,13 @@ namespace DotNetRuServerHipstaMVP.DatabaseScheme
                 .WithColumn("Id")
                 .AsInt32()
                 .NotNullable()
-                .PrimaryKey();
+                .PrimaryKey()
+                .Identity();
             table
                 .WithColumn("ExportId")
                 .AsString(100)
                 .NotNullable()
-                .PrimaryKey();
+                .Unique();
 
             table
                 .WithColumn("Name")

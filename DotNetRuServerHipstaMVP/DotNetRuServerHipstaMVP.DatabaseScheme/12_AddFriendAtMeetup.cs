@@ -2,6 +2,7 @@ using FluentMigrator;
 
 namespace DotNetRuServerHipstaMVP.DatabaseScheme
 {
+    [Migration(12)]
     public class AddFriendAtMeetup : Migration
     {
         public override void Up()

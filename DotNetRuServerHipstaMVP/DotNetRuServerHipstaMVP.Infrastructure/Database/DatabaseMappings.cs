@@ -34,6 +34,7 @@ namespace DotNetRuServerHipstaMVP.Infrastructure.Database
             talk.Property(x => x.SlidesUrl).HasColumnName("SlidesUrl");
             talk.Property(x => x.VideoUrl).HasColumnName("VideoUrl");
             talk.Property(x => x.IsDraft).HasColumnName("IsDraft");
+            talk.Property(x => x.IsUserVisible).HasColumnName("IsUserVisible");
         }
 
         public static void BindSpeakerTalk(this EntityTypeBuilder<SpeakerTalk> speakerTalk)
@@ -58,7 +59,7 @@ namespace DotNetRuServerHipstaMVP.Infrastructure.Database
             seeAlsoTalk.Property(x => x.ChildTalkId).HasColumnName("ChildTalkId");
 
             seeAlsoTalk.HasOne(x => x.ParentTalk).WithMany(x => x.SeeAlsoTalks).HasForeignKey(x => x.ParentTalkId);
-            seeAlsoTalk.HasOne(x => x.ChildTalk).WithMany(x => x.SeeAlsoTalks).HasForeignKey(x => x.ChildTalkId);
+            seeAlsoTalk.HasOne(x => x.ChildTalk);
         }
 
         public static void BindVenue(this EntityTypeBuilder<Venue> venue)
@@ -69,6 +70,7 @@ namespace DotNetRuServerHipstaMVP.Infrastructure.Database
             venue.Property(x => x.ExportId).HasColumnName("ExportId");
             venue.Property(x => x.Name).HasColumnName("Name");
             venue.Property(x => x.MapUrl).HasColumnName("MapUrl");
+            venue.Property(x => x.Address).HasColumnName("Address");
         }
 
         public static void BindCommunities(this EntityTypeBuilder<Community> community)
@@ -91,6 +93,8 @@ namespace DotNetRuServerHipstaMVP.Infrastructure.Database
             friend.Property(x => x.Name).HasColumnName("Name");
             friend.Property(x => x.Description).HasColumnName("Description");
             friend.Property(x => x.Url).HasColumnName("Url");
+            friend.Property(x => x.LogoUrl).HasColumnName("LogoUrl");
+            friend.Property(x => x.SmallLogoUrl).HasColumnName("SmallLogoUrl");
         }
 
         public static void BindMeetup(this EntityTypeBuilder<Meetup> meetup)
@@ -126,6 +130,8 @@ namespace DotNetRuServerHipstaMVP.Infrastructure.Database
         public static void BindFriendAtMeetup(this EntityTypeBuilder<FriendAtMeetup> friendAtMeetup)
         {
             friendAtMeetup.ToTable("FriendAtMeetup");
+
+            friendAtMeetup.HasKey(t => new {t.MeetupId, t.FriendId});
 
             friendAtMeetup.Property(x => x.MeetupId).HasColumnName("MeetupId");
             friendAtMeetup.Property(x => x.FriendId).HasColumnName("FriendId");

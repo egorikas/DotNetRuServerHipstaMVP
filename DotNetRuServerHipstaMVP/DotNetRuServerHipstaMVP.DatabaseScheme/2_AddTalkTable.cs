@@ -12,12 +12,13 @@ namespace DotNetRuServerHipstaMVP.DatabaseScheme
                 .WithColumn("Id")
                 .AsInt32()
                 .NotNullable()
-                .PrimaryKey();
+                .PrimaryKey()
+                .Identity();
             table
                 .WithColumn("ExportId")
                 .AsString(100)
                 .NotNullable()
-                .PrimaryKey();
+                .Unique();
 
             table
                 .WithColumn("Title")
@@ -25,16 +26,19 @@ namespace DotNetRuServerHipstaMVP.DatabaseScheme
                 .NotNullable();
             table
                 .WithColumn("Description")
-                .AsString(100);
+                .AsString(5000);
             table
                 .WithColumn("CodeUrl")
-                .AsString(100);
+                .AsString(300)
+                .Nullable();
             table
                 .WithColumn("SlidesUrl")
-                .AsString(100);
+                .AsString(300)
+                .Nullable();
             table
                 .WithColumn("VideoUrl")
-                .AsString(100);
+                .AsString(300)
+                .Nullable();
             table
                 .WithColumn("IsDraft")
                 .AsBoolean()

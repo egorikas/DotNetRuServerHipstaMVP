@@ -18,6 +18,9 @@ namespace DotNetRuServerHipstaMVP.Domain.Entities
         public string HabrUrl { get; set; }
         public string GitHubUrl { get; set; }
 
+        public string AvatarUrl { get; set; }
+        public string AvatarSmallUrl { get; set; }
+
         public ICollection<SpeakerTalk> Talks { get; set; }
 
         public bool IsUserVisible { get; set; }

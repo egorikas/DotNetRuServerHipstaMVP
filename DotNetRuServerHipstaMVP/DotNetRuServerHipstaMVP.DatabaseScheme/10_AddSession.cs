@@ -2,6 +2,7 @@ using FluentMigrator;
 
 namespace DotNetRuServerHipstaMVP.DatabaseScheme
 {
+    [Migration(10)]
     public class AddSession : Migration
     {
         public override void Up()
@@ -11,7 +12,8 @@ namespace DotNetRuServerHipstaMVP.DatabaseScheme
                 .WithColumn("Id")
                 .AsInt32()
                 .NotNullable()
-                .PrimaryKey();
+                .PrimaryKey()
+                .Identity();
 
             table
                 .WithColumn("TalkId")

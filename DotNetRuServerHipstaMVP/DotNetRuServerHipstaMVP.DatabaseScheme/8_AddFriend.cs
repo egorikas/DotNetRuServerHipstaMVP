@@ -2,6 +2,7 @@ using FluentMigrator;
 
 namespace DotNetRuServerHipstaMVP.DatabaseScheme
 {
+    [Migration(8)]
     public class AddFriend : Migration
     {
         public override void Up()
@@ -11,12 +12,13 @@ namespace DotNetRuServerHipstaMVP.DatabaseScheme
                 .WithColumn("Id")
                 .AsInt32()
                 .NotNullable()
-                .PrimaryKey();
+                .PrimaryKey()
+                .Identity();
             table
                 .WithColumn("ExportId")
                 .AsString(100)
                 .NotNullable()
-                .PrimaryKey();
+                .Unique();
 
             table
                 .WithColumn("Name")
@@ -27,7 +29,7 @@ namespace DotNetRuServerHipstaMVP.DatabaseScheme
                 .AsString(100);
             table
                 .WithColumn("Description")
-                .AsString(500);
+                .AsString(2000);
         }
 
         public override void Down()
