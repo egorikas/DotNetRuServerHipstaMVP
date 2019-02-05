@@ -22,7 +22,7 @@ namespace DotNetRuServerHipstaMVP.DatabaseScheme
 
             table
                 .WithColumn("Title")
-                .AsString(100)
+                .AsString(500)
                 .NotNullable();
             table
                 .WithColumn("Description")

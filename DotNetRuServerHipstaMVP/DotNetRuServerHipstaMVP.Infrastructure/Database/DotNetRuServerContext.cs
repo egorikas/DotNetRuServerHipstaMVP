@@ -23,6 +23,7 @@ namespace DotNetRuServerHipstaMVP.Infrastructure.Database
             modelBuilder.Entity<Friend>().BindFriend();
             modelBuilder.Entity<Meetup>().BindMeetup();
             modelBuilder.Entity<FriendAtMeetup>().BindFriendAtMeetup();
+            modelBuilder.Entity<Session>().BindSession();
         }
 
         public DbSet<Speaker> Speakers { get; set; }
@@ -36,5 +37,7 @@ namespace DotNetRuServerHipstaMVP.Infrastructure.Database
         public DbSet<Friend> Friends { get; set; }
         public DbSet<Meetup> Meetups { get; set; }
         public DbSet<FriendAtMeetup> FriendAtMeetups { get; set; }
+        
+        public DbSet<Session> Sessions { get; set; }
     }
 }

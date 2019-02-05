@@ -8,7 +8,7 @@ namespace DotNetRuServerHipstaMVP.Domain.Entities
         public string ExportId { get; set; }
 
         public string Name { get; set; }
-        public Session[] Sessions { get; set; }
+        public List<Session> Sessions { get; set; }
 
         public int VenueId { get; set; }
         public Venue Venue { get; set; }

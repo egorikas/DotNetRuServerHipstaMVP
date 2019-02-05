@@ -125,6 +125,8 @@ namespace DotNetRuServerHipstaMVP.Infrastructure.Database
 
             session.Property(x => x.StartTime).HasColumnName("StartTime");
             session.Property(x => x.EndTime).HasColumnName("EndTime");
+
+            session.HasOne(x => x.Meetup).WithMany(x => x.Sessions);
         }
 
         public static void BindFriendAtMeetup(this EntityTypeBuilder<FriendAtMeetup> friendAtMeetup)

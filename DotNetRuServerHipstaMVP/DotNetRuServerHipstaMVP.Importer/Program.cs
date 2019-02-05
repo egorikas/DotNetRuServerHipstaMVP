@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using System.Xml.XPath;
 using DotNetRuServerHipstaMVP.Domain.Entities;
 using DotNetRuServerHipstaMVP.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
@@ -31,9 +33,7 @@ namespace DotNetRuServerHipstaMVP.Importer
             await importer.ImportFriend();
             await importer.ImportSpeakers();
             await importer.ImportTalks();
-
-//            var meetupsLinks =
-//                await github.Repository.Content.GetAllContentsByRef("DotNetRu", "Audit", "db/meetups", "master");
+            await importer.ImportMeetups();
         }
     }
 
@@ -217,6 +217,7 @@ namespace DotNetRuServerHipstaMVP.Importer
 
         public async Task ImportTalks()
         {
+            var seeAlso = new List<(int, List<string>)>();
             var talksLinks =
                 await _gitHub.Repository.Content.GetAllContentsByRef("DotNetRu", "Audit", "db/talks", "master");
             foreach (var talkLink in talksLinks)
@@ -244,7 +245,7 @@ namespace DotNetRuServerHipstaMVP.Importer
                         });
                     }
 
-                    _context.Talks.Add(new Talk
+                    var talk = new Talk
                     {
                         ExportId = exportId,
                         Title = responseXml.Element("Title")?.Value,
@@ -255,7 +256,96 @@ namespace DotNetRuServerHipstaMVP.Importer
                         Speakers = speakerTalkList,
                         IsDraft = false,
                         IsUserVisible = true
+                    };
+
+                    _context.Talks.Add(talk);
+                    _context.SaveChanges();
+
+                    var seeAlsoTalksTemp = responseXml.Element("SeeAlsoTalkIds")?.Descendants().Select(x => x.Value)
+                        .ToList();
+                    if (seeAlsoTalksTemp != null && seeAlsoTalksTemp.Count > 0)
+                        seeAlso.Add((talk.Id, seeAlsoTalksTemp));
+                }
+            }
+
+
+            foreach (var item in seeAlso)
+            {
+                var parent = await _context.Talks.FirstAsync(x => x.Id == item.Item1);
+                foreach (var exportId in item.Item2)
+                {
+                    var child = await _context.Talks.Include(x => x.SeeAlsoTalks)
+                        .FirstAsync(x => x.ExportId == exportId);
+                    if (parent.SeeAlsoTalks == null)
+                        parent.SeeAlsoTalks = new List<SeeAlsoTalk>();
+
+                    parent.SeeAlsoTalks.Add(new SeeAlsoTalk()
+                    {
+                        ChildTalkId = child.Id
                     });
+                    _context.SaveChanges();
+                }
+            }
+        }
+
+        public async Task ImportMeetups()
+        {
+            var meetupsLinks =
+                await _gitHub.Repository.Content.GetAllContentsByRef("DotNetRu", "Audit", "db/meetups", "master");
+            foreach (var link in meetupsLinks)
+            {
+                var responseData = await _httpClient.GetByteArrayAsync(link.DownloadUrl);
+                using (var ms = new MemoryStream(responseData))
+                {
+                    var responseXml = XDocument.Load(ms).Root;
+                    var exportId = responseXml?.Element("Id")?.Value;
+                    if (string.IsNullOrEmpty(exportId))
+                        continue;
+
+                    var existing = await _context.Meetups.FirstOrDefaultAsync(x => x.ExportId == exportId.Trim());
+                    if (existing != null)
+                        continue;
+                    
+                    var venueExportId = responseXml?.Element("VenueId")?.Value;
+                    var venue = await _context.Venues.FirstAsync(x => x.ExportId == venueExportId.Trim());
+
+                    var friendsAtMeetupIds = responseXml.Element("FriendIds")?.Descendants().Select(x => x.Value).ToList();
+                    var friends = await _context.Friends.Where(x => friendsAtMeetupIds.Contains(x.ExportId)).Select(x =>
+                        new FriendAtMeetup()
+                        {
+                            FriendId = x.Id,
+                            Friend = x
+                        }).ToListAsync();
+                    
+                    var talksIds = responseXml.Element("TalkIds")?.Descendants().Select(x => x.Value).ToList();
+                    var talks = await _context.Talks.Where(x => talksIds.Contains(x.ExportId)).ToListAsync();
+                    
+                    var communityId = responseXml?.Element("CommunityId")?.Value;
+                    var community = await _context.Communities.FirstAsync(x => x.ExportId == communityId.Trim());
+                    
+                    var sessionsRaw = responseXml.Element("Sessions")?.Nodes().ToList();
+                    var sessions = new List<Session>();
+                    foreach (var sessionRaw in sessionsRaw)
+                    {                       
+                        sessions.Add(new Session
+                        {
+                            Talk = talks.First(x => x.ExportId == sessionRaw.XPathSelectElement("TalkId")?.Value),
+                            StartTime = DateTime.Parse(sessionRaw.XPathSelectElement("StartTime")?.Value),
+                            EndTime = DateTime.Parse(sessionRaw.XPathSelectElement("EndTime")?.Value),
+                        });
+                    }   
+
+                    var meetup = new Meetup()
+                    {
+                        ExportId = exportId,
+                        Name = responseXml?.Element("Name")?.Value,
+                        Venue = venue,
+                        Friends = friends,
+                        Talks = talks,
+                        Community = community,
+                        Sessions = sessions
+                    };
+                    _context.Meetups.Add(meetup);
                     _context.SaveChanges();
                 }
             }
