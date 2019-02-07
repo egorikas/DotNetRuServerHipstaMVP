@@ -2,6 +2,18 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetRuServerHipstaMVP.Api", "DotNetRuServerHipstaMVP.Api\DotNetRuServerHipstaMVP.Api.csproj", "{0CA767D0-3AE3-446B-A793-9EE11BE12F76}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetRuServerHipstaMVP.Domain", "DotNetRuServerHipstaMVP.Domain\DotNetRuServerHipstaMVP.Domain.csproj", "{F7F61475-18EA-4977-B197-284397745211}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetRuServerHipstaMVP.Infrastructure", "DotNetRuServerHipstaMVP.Infrastructure\DotNetRuServerHipstaMVP.Infrastructure.csproj", "{3C58E817-8A4C-44D6-A4D9-6BDFDF9F9415}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetRuServerHipstaMVP.DatabaseScheme", "DotNetRuServerHipstaMVP.DatabaseScheme\DotNetRuServerHipstaMVP.DatabaseScheme.csproj", "{72BF8045-1B7A-464A-8CFE-11D8964BFB71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetRuServerHipstaMVP.Api.Dto", "DotNetRuServerHipstaMVP.Api.Dto\DotNetRuServerHipstaMVP.Api.Dto.csproj", "{E867B356-1D5B-4624-BB94-B17A4D5A3A6D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{3DD76C28-CD6E-4DE5-938A-1AA8E91AFA31}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetRuServerHipstaMVP.Importer", "DotNetRuServerHipstaMVP.Importer\DotNetRuServerHipstaMVP.Importer.csproj", "{D10EDD59-DA9D-4C41-B0F3-254E834948E5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +24,29 @@ Global
 		{0CA767D0-3AE3-446B-A793-9EE11BE12F76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CA767D0-3AE3-446B-A793-9EE11BE12F76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CA767D0-3AE3-446B-A793-9EE11BE12F76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7F61475-18EA-4977-B197-284397745211}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7F61475-18EA-4977-B197-284397745211}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7F61475-18EA-4977-B197-284397745211}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7F61475-18EA-4977-B197-284397745211}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C58E817-8A4C-44D6-A4D9-6BDFDF9F9415}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C58E817-8A4C-44D6-A4D9-6BDFDF9F9415}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C58E817-8A4C-44D6-A4D9-6BDFDF9F9415}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C58E817-8A4C-44D6-A4D9-6BDFDF9F9415}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72BF8045-1B7A-464A-8CFE-11D8964BFB71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72BF8045-1B7A-464A-8CFE-11D8964BFB71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72BF8045-1B7A-464A-8CFE-11D8964BFB71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72BF8045-1B7A-464A-8CFE-11D8964BFB71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E867B356-1D5B-4624-BB94-B17A4D5A3A6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E867B356-1D5B-4624-BB94-B17A4D5A3A6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E867B356-1D5B-4624-BB94-B17A4D5A3A6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E867B356-1D5B-4624-BB94-B17A4D5A3A6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D10EDD59-DA9D-4C41-B0F3-254E834948E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D10EDD59-DA9D-4C41-B0F3-254E834948E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D10EDD59-DA9D-4C41-B0F3-254E834948E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D10EDD59-DA9D-4C41-B0F3-254E834948E5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{72BF8045-1B7A-464A-8CFE-11D8964BFB71} = {3DD76C28-CD6E-4DE5-938A-1AA8E91AFA31}
+		{D10EDD59-DA9D-4C41-B0F3-254E834948E5} = {3DD76C28-CD6E-4DE5-938A-1AA8E91AFA31}
 	EndGlobalSection
 EndGlobal

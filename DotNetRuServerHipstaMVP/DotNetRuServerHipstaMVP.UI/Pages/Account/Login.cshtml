@@ -1,0 +1,31 @@
+﻿@page
+@model LoginModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<div class="login-form d-flex justify-content-center">
+    <div class="main-div">
+        <div class="panel">
+            <h2>Admin Login</h2>
+            <p>Вводите логин/пароль</p>
+        </div>
+        <form id="Login" method="post">
+
+            <div class="form-group">
+                <input type="email" class="form-control" id="inputEmail" asp-for="TokenRequest.Email" placeholder="Email Address">
+            </div>
+
+            <div class="form-group">
+
+                <input type="password" class="form-control" id="inputPassword" asp-for="TokenRequest.Password" placeholder="Password">
+
+            </div>
+            @* <div class="forgot"> *@
+            @*     <a href="reset.html">Forgot password?</a> *@
+            @* </div> *@
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Зайти!</button>
+            </div>
+
+        </form>
+    </div>
+</div>
